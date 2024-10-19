@@ -33,7 +33,7 @@ $result = $borrowedItem->fetchItems();
                 <h6>Keep Track of Borrowed Items</h6>
             </div>
             <div class="page-btn">
-                <a href="addproduct.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img" class="me-1">Add New Item</a>
+                <a href="addborrower.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img" class="me-1">Add New Item</a>
             </div>
         </div>
 
@@ -67,7 +67,7 @@ $result = $borrowedItem->fetchItems();
                                         <td>" . htmlspecialchars($row['course_program']) . "</td>
                                         <td>" . htmlspecialchars($row['signature']) . "</td>
                                         <td>
-                                            <a href='editproduct.php?id=" . $row['id'] . "' class='btn btn-warning btn-sm'>
+                                            <a href='addborrower.php?id=" . $row['id'] . "' class='btn btn-warning btn-sm'>
                                                 <i class='fas fa-edit'></i>
                                             </a>
                                             <a href='delete.php?id=" . $row['id'] . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this record?\");'>

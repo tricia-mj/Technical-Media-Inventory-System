@@ -1,14 +1,32 @@
 <?php
-$servername = "localhost";
-$username = "root"; // default username
-$password = ""; // default password
-$dbname = "borrowed_items";
+class Database {
+    private $servername = "localhost";
+    private $username = "root"; // default username
+    private $password = ""; // default password
+    private $dbname = "borrowed_items";
+    private $conn;
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Constructor to establish the database connection
+    public function __construct() {
+        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        
+        // Check connection
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
+        }
+    }
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    // Method to get the database connection
+    public function getConnection() {
+        return $this->conn;
+    }
+
+    // Destructor to close the database connection
+    public function __destruct() {
+        if ($this->conn) {
+            $this->conn->close();
+        }
+    }
 }
 ?>
+

@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 
     if ($stmt->execute()) {
         // Record deleted successfully, redirect to product list
-        header("Location: productlist.php");
+        header("Location: index.php");
         exit();
     } else {
         // Error in deleting record

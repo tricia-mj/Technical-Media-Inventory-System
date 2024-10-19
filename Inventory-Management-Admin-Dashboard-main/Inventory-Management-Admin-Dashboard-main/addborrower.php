@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Add the borrowed record
     if ($borrowedItem->addRecord($borrower, $date, $time, $venue, $item_borrowed, $department, $course_program, $signature)) {
         // Redirect to borrowed list page after submission
-        header("Location: productlist.php");
+        header("Location: index.php");
         exit();
     } else {
         echo "Error adding record.";
@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <div class="form-buttons">
                             <button type="submit" class="btn btn-submit me-2">Submit</button>
-                            <a href="productlist.php" class="btn btn-cancel">Cancel</a>
+                            <a href="index.php" class="btn btn-cancel">Cancel</a>
                         </div>
                     </form>
                 </div>
