@@ -4,7 +4,7 @@ class Database {
     private $username = "root"; // default username
     private $password = ""; // default password
     private $dbname = "borrowed_items";
-    private $conn;
+    public $conn;
 
     // Constructor to establish the database connection
     public function __construct() {
@@ -21,12 +21,7 @@ class Database {
         return $this->conn;
     }
 
-    // Destructor to close the database connection
-    public function __destruct() {
-        if ($this->conn) {
-            $this->conn->close();
-        }
-    }
+
 }
 ?>
 

@@ -2,6 +2,10 @@
 // Include the database connection file
 include 'db_connection.php';
 
+$database = new Database();
+$conn = $database->conn;
+
+
 class BorrowedItem {
     private $conn;
 

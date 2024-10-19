@@ -67,7 +67,7 @@ $result = $borrowedItem->fetchItems();
                                         <td>" . htmlspecialchars($row['course_program']) . "</td>
                                         <td>" . htmlspecialchars($row['signature']) . "</td>
                                         <td>
-                                            <a href='addborrower.php?id=" . $row['id'] . "' class='btn btn-warning btn-sm'>
+                                            <a href='editborrower.php?id=" . $row['id'] . "' class='btn btn-warning btn-sm'>
                                                 <i class='fas fa-edit'></i>
                                             </a>
                                             <a href='delete.php?id=" . $row['id'] . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this record?\");'>
