@@ -1,22 +1,33 @@
 <?php
 class Database {
-    private $servername = "localhost";
-    private $username = "root"; // replace with your MySQL username
-    private $password = ""; // replace with your MySQL password
-    private $dbname = "borrowed_items"; // replace with your database name
-    public $conn;
+    private $host = "localhost";
+    private $user = "root";
+    private $password = "";
+    private $dbname = "borrowed_items";
+    private static $instance = null;
 
-    public function __construct() {
-        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-        
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+    private $connection;
+
+    private function __construct() {
+        try {
+            $this->connection = new PDO(
+                "mysql:host=$this->host;dbname=$this->dbname",
+                $this->user,
+                $this->password
+            );
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Connection failed: " . $e->getMessage());
         }
     }
 
-    public function __destruct() {
-        $this->conn->close();
+    public static function getInstance() {
+        if (self::$instance === null) {
+            self::$instance = new Database();
+        }
+        return self::$instance->connection;
     }
+
+    
 }
 ?>
-

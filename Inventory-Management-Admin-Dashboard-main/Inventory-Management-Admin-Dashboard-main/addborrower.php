@@ -1,23 +1,23 @@
 <?php
-include 'Database.php';
-include 'BorrowedItem.php';
+require 'Database.php';
+require 'BaseModel.php';
+require 'BorrowedItem.php';
 
-$db = new Database(); // Create a new Database instance
-$borrowedItem = new BorrowedItem($db); // Pass the Database instance to BorrowedItem
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $borrowedItem = new BorrowedItem();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $borrower = $_POST['borrower'];
-    $date = $_POST['date'];
-    $time = $_POST['time'];
-    $venue = $_POST['venue'];
-    $item_borrowed = $_POST['item_borrowed'];
-    $department = $_POST['department'];
-    $course_program = $_POST['course_program'];
-    $signature = $_POST['signature'];
+    $data = [
+        ':borrower' => $_POST['borrower'],
+        ':date' => $_POST['date'],
+        ':time' => $_POST['time'],
+        ':venue' => $_POST['venue'],
+        ':item_borrowed' => $_POST['item_borrowed'],
+        ':department' => $_POST['department'],
+        ':course_program' => $_POST['course_program'],
+        ':signature' => $_POST['signature'],
+    ];
 
-    // Add the borrowed record
-    if ($borrowedItem->addRecord($borrower, $date, $time, $venue, $item_borrowed, $department, $course_program, $signature)) {
-        // Redirect to borrowed list page after submission
+    if ($borrowedItem->create($data)) {
         header("Location: index.php");
         exit();
     } else {
@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 
 

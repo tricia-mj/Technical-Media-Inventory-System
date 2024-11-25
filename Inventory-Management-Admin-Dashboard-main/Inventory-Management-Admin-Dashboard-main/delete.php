@@ -1,27 +1,20 @@
 <?php
-include 'Database.php';
+require 'Database.php';
+require 'BaseModel.php';
+require 'BorrowedItem.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+    $borrowedItem = new BorrowedItem();
 
-    $db = new Database();
-    $conn = $db->conn;
-
-    // Prepare and execute delete statement
-    $sql = "DELETE FROM borrowed_items WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
-
-    if ($stmt->execute()) {
-        // Record deleted successfully, redirect to product list
-        header("Location: index.php");
+    if ($borrowedItem->delete($id)) {
+        header("Location: index.php"); // Redirect to the list page
         exit();
     } else {
-        // Error in deleting record
-        echo "Error deleting record: " . $conn->error;
+        echo "Error deleting record.";
     }
-
-    $stmt->close();
+} else {
+    header("Location: index.php");
+    exit();
 }
 ?>
-

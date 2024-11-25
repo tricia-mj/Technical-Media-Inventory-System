@@ -1,13 +1,10 @@
 <?php
-// Include the database and borrowed items classes
-include 'Database.php';
-include 'BorrowedItem.php';
+// Include necessary files
+require 'Database.php';
+require 'BorrowedItem.php';
 
-// Initialize the database connection
-$database = new Database();
-$borrowedItem = new BorrowedItem($database);
-
-// Fetch borrowed items data
+// Initialize the borrowed items model
+$borrowedItem = new BorrowedItem();
 $result = $borrowedItem->fetchItems();
 ?>
 
