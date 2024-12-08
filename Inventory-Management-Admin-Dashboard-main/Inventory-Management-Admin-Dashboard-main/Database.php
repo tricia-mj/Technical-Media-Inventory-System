@@ -6,7 +6,7 @@ class Database {
     private $dbname = "borrowed_items";
     private static $instance = null;
 
-    private $connection;
+    protected $connection;
 
     private function __construct() {
         try {
@@ -25,9 +25,11 @@ class Database {
         if (self::$instance === null) {
             self::$instance = new Database();
         }
-        return self::$instance->connection;
+        return self::$instance;
     }
 
-    
+    public function getConnection() {
+        return $this->connection;
+    }
 }
 ?>

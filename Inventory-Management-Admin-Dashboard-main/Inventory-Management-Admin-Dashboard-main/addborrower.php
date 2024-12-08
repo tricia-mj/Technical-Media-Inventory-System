@@ -1,20 +1,19 @@
 <?php
 require 'Database.php';
-require 'BaseModel.php';
 require 'BorrowedItem.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $borrowedItem = new BorrowedItem();
 
     $data = [
-        ':borrower' => $_POST['borrower'],
-        ':date' => $_POST['date'],
-        ':time' => $_POST['time'],
-        ':venue' => $_POST['venue'],
-        ':item_borrowed' => $_POST['item_borrowed'],
-        ':department' => $_POST['department'],
-        ':course_program' => $_POST['course_program'],
-        ':signature' => $_POST['signature'],
+        'borrower' => $_POST['borrower'],
+        'date' => $_POST['date'],
+        'time' => $_POST['time'],
+        'venue' => $_POST['venue'],
+        'item_borrowed' => $_POST['item_borrowed'],
+        'department' => $_POST['department'],
+        'course_program' => $_POST['course_program'],
+        'signature' => $_POST['signature'],
     ];
 
     if ($borrowedItem->create($data)) {

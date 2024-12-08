@@ -1,6 +1,5 @@
 <?php
 require 'Database.php';
-require 'BaseModel.php';
 require 'BorrowedItem.php';
 
 if (isset($_GET['id'])) {

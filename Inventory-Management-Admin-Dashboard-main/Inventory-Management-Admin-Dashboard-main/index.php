@@ -51,32 +51,25 @@ $result = $borrowedItem->fetchItems();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>
-                                        <td>" . htmlspecialchars($row['borrower']) . "</td>
-                                        <td>" . htmlspecialchars($row['date']) . "</td>
-                                        <td>" . htmlspecialchars($row['time']) . "</td>
-                                        <td>" . htmlspecialchars($row['venue']) . "</td>
-                                        <td>" . htmlspecialchars($row['item_borrowed']) . "</td>
-                                        <td>" . htmlspecialchars($row['department']) . "</td>
-                                        <td>" . htmlspecialchars($row['course_program']) . "</td>
-                                        <td>" . htmlspecialchars($row['signature']) . "</td>
-                                        <td>
-                                            <a href='editborrower.php?id=" . $row['id'] . "' class='btn btn-warning btn-sm'>
-                                                <i class='fas fa-edit'></i>
-                                            </a>
-                                            <a href='delete.php?id=" . $row['id'] . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this record?\");'>
-                                                <i class='fas fa-trash-alt'></i>
-                                            </a>
-                                        </td>
-                                    </tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='9'>No records found</td></tr>";
-                        }
-                        ?>
+                        <?php foreach ($result as $row): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($row['borrower']); ?></td>
+                                <td><?= htmlspecialchars($row['date']); ?></td>
+                                <td><?= htmlspecialchars($row['time']); ?></td>
+                                <td><?= htmlspecialchars($row['venue']); ?></td>
+                                <td><?= htmlspecialchars($row['item_borrowed']); ?></td>
+                                <td><?= htmlspecialchars($row['department']); ?></td>
+                                <td><?= htmlspecialchars($row['course_program']); ?></td>
+                                <td><?= htmlspecialchars($row['signature']); ?></td>
+                                <td>
+                                    <!-- Edit Button -->
+                                    <a href="editborrower.php?id=<?= $row['id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                    
+                                    <!-- Delete Button -->
+                                    <a href="delete.php?id=<?= $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fas fa-trash"></i> Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
