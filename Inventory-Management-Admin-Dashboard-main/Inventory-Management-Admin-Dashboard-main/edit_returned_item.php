@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="alert alert-danger"><?= htmlspecialchars($error_message); ?></div>
     <?php endif; ?>
     <form method="POST">
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label>Borrower & Borrowed Item</label>
             <select name="borrowed_item" class="form-control" required>
                 <option value="">Select Borrowed Item</option>
@@ -69,16 +69,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label>Return Date</label>
             <input type="date" name="return_date" class="form-control" value="<?= htmlspecialchars($item['return_date']); ?>" required>
         </div>
-        <div class="form-group">
+
+        <div class="form-group mb-3">
             <label>Remarks</label>
             <input type="text" name="remarks" class="form-control" value="<?= htmlspecialchars($item['remarks']); ?>">
         </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href="return_items.php" class="btn btn-secondary">Cancel</a>
+
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="return_items.php" class="btn btn-secondary ms-3">Cancel</a>
+        </div>
     </form>
 </div>
 </body>

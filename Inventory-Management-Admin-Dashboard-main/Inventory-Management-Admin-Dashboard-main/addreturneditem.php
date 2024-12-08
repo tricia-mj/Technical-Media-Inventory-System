@@ -60,6 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             color: red;
             margin-bottom: 15px;
         }
+        .form-layout {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .form-left, .form-right {
+            flex: 1;
+        }
     </style>
 </head>
 <body>
@@ -82,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     <!-- Form to add returned item -->
                     <form method="POST" action="">
-                        <div class="form-group">
-                            <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="form-layout">
+                            <div class="form-left">
                                 <div class="form-group">
                                     <label>Borrower & Borrowed Item</label>
                                     <select name="borrowed_item_id" class="form-control" required>
@@ -95,25 +103,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                            <div class="col-lg-4 col-sm-6 col-12">
+
                                 <div class="form-group">
                                     <label>Return Date</label>
                                     <input type="date" name="return_date" class="form-control" required>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-6 col-12">
+
+                            <div class="form-right">
                                 <div class="form-group">
                                     <label>Returned Item</label>
                                     <input type="text" name="returned_item" class="form-control" required>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6 col-12">
+
                                 <div class="form-group">
                                     <label>Remarks</label>
                                     <textarea name="remarks" class="form-control" rows="3" required></textarea>
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-buttons">
                             <button type="submit" class="btn btn-submit me-2">Submit</button>
                             <a href="return_items.php" class="btn btn-cancel">Cancel</a>
